@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "build:cuy": "vite --config vite-cuy.config.ts build"
+    "build:cuy": "vite --config vite-cuy.config.ts build",
+    "dev:cuy": "vite --config vite-cuy.config.ts"
   },
   "dependencies": {
     "@mui/icons-material": "^5.10.9",

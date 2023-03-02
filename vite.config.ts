@@ -16,16 +16,5 @@ export default defineConfig({
       name: 'Moonlight',
       fileName: (format) => `index.${format}.js`,
     },
-    // rollupOptions: {
-    //   // Make sure to externalize all dependencies
-    //   external: ['react', "react-dom"],
-    //   output: {
-    //     // Provide global variables to use in UMD build
-    //     globals: {
-    //       react: 'React',
-    //       "react-dom": 'ReactDOM',
-    //     },
-    //   },
-    // },
   },
 });
