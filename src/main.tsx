@@ -11,9 +11,7 @@ ReactDOM.createRoot(document.getElementById("moonlight-root") as HTMLElement).re
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
       <StyledThemeProvider theme={theme("light")}>
-        <BrowserRouter>
           <App />
-        </BrowserRouter>
       </StyledThemeProvider>
     </StyledEngineProvider>
   </React.StrictMode>
