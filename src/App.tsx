@@ -1,11 +1,11 @@
-import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Routes, Route, Outlet, Link } from "react-router-dom";
-import { Autocomplete } from './components/autocomplete/Autocomplete';
-import { Button } from './components/button/Button';
-import { Input } from './components/input/Input';
-import { Modal } from './components/modal/Modal';
-import { Select } from './components/select/Select';
+import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import { Routes, Route, Outlet, Link, HashRouter } from "react-router-dom";
+import { Autocomplete } from "./components/autocomplete/Autocomplete";
+import { Button } from "./components/button/Button";
+import { Input } from "./components/input/Input";
+import { Modal } from "./components/modal/Modal";
+import { Select } from "./components/select/Select";
 
 function App() {
   return (
@@ -23,19 +23,42 @@ function App() {
       {/* Routes nest inside one another. Nested route paths build upon
             parent route paths, and nested route elements render inside
             parent route elements. See the note about <Outlet> below. */}
-      <Routes>
+
+      <HashRouter>
+        <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Input />} />
-          <Route path="select" element={<Select />} />
-          <Route path="button" element={<Button />} />
+          <Route path="call" element={<ChildLayout />}>
+            <Route path="select" element={<Select />} />
+            <Route path="button" element={<Button />} />
+          </Route>
           <Route path="autocomplete" element={<Autocomplete />} />
           <Route path="modal" element={<Modal />} />
-          {/* Using path="*"" means "match anything", so this route
-                acts like a catch-all for URLs that we don't have explicit
-                routes for. */}
           <Route path="*" element={<NoMatch />} />
         </Route>
-      </Routes>
+        </Routes>
+      </HashRouter>
+
+      {/* <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Input />} />
+          <Route path="ch" element={<ChildLayout />}>
+            <Route path="select" element={<Select />} />
+            <Route path="button" element={<Button />} />
+          </Route>
+          <Route path="autocomplete" element={<Autocomplete />} />
+          <Route path="modal" element={<Modal />} />
+          <Route path="*" element={<NoMatch />} />
+        </Route>
+      </Routes> */}
+    </div>
+  );
+}
+
+function ChildLayout() {
+  return (
+    <div>
+      <Outlet />
     </div>
   );
 }
@@ -51,10 +74,10 @@ function Layout() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/select">Select</Link>
+            <Link to="/call/select">Select</Link>
           </li>
           <li>
-            <Link to="/button">Button</Link>
+            <Link to="/call/button">Button</Link>
           </li>
           <li>
             <Link to="/autocomplete">Autocomplete</Link>
@@ -113,5 +136,4 @@ function NoMatch() {
   );
 }
 
-
-export default App
+export default App;

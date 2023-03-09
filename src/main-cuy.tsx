@@ -5,18 +5,15 @@ import App from "./App";
 import "./index.css";
 import theme from "./theme/theme";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
-import { BrowserRouter } from "react-router-dom";
 
 export { init };
 
 function init() {
-  ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+  ReactDOM.createRoot(document.getElementById("moonlight-root") as HTMLElement).render(
     <React.StrictMode>
       <StyledEngineProvider injectFirst>
         <StyledThemeProvider theme={theme("light")}>
-          <BrowserRouter>
             <App />
-          </BrowserRouter>
         </StyledThemeProvider>
       </StyledEngineProvider>
     </React.StrictMode>
