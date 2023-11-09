@@ -17,7 +17,7 @@ function App() {
         including nested <code>&lt;Route&gt;</code>s,{" "}
         <code>&lt;Outlet&gt;</code>s, <code>&lt;Link&gt;</code>s, and using a
         "*" route (aka "splat route") to render a "not found" page when someone
-        visits an unrecognized URL 1.
+        visits an unrecognized URL 2.
       </p>
 
       {/* Routes nest inside one another. Nested route paths build upon
