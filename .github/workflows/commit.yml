@@ -19,6 +19,7 @@ jobs:
           commit_regex="^($branch_types)\/[A-Za-z0-9._-]+$"
 
           # Iterate through the commit messages in the push
+          git log "$commit_regex : $commit_regex" 
           git log --format="%s" ${{ github.event.before }}..${{ github.sha }} | while read -r line; do
             if [[ ! $line =~ $commit_regex ]]; then
               echo "Invalid commit message: $line"
