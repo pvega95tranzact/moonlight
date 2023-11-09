@@ -18,8 +18,8 @@ jobs:
           branch_types="feature|bugfix|release|hotfix"
           commit_regex="^($branch_types)\(EAPP-[0-9]+\): .+"
 
-          # Check commit messages using git log with --grep
-          git log --format="%s" ${{ github.event.before }}..${{ github.sha }} | while read -r line; do
+          # Check commit messages using git log without specifying a revision range
+          git log --format="%s" | while read -r line; do
             if [[ ! $line =~ $commit_regex ]]; then
               echo "Invalid commit message: $line"
               exit 1  # Exit the script with an error code
