@@ -15,7 +15,7 @@ jobs:
       - name: Check Commit Messages
         run: |
           # Define a regular expression to match the desired commit message structure
-          branch_types="feature|bugfix|release|hotfix"
+          branch_types="feat|fix"
           commit_regex="^($branch_types)\(EAPP-[0-9]+\): .+"
 
           # Check commit messages using git log without specifying a revision range
