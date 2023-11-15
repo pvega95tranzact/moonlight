@@ -16,7 +16,7 @@ jobs:
         run: |
           # Define a regular expression to match the desired commit message structure
           branch_types="feat|fix"
-          commit_regex="^($branch_types)\(EAPP-[0-9]+\): .+"
+          commit_regex="^($branch_types)\(EAPP-[0-9]+\): .+|Merge branch 'develop' into (feature|fix)/EAPP-[0-9]+_.*"
 
           # Check commit messages using git log without specifying a revision range
           git log --format="%s" | while read -r line; do
