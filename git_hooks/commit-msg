@@ -1,7 +1,7 @@
 #!/bin/sh
 
-branch_types="feature|bugfix|release|hotfix"
-commit_regex="^($branch_types)\(EAPP-[0-9]+\): .+"
+branch_types="feat|fix"
+commit_regex="^($branch_types)\(EAPP-[0-9]+\): .+|Merge branch 'develop' into (feature|fix)/EAPP-[0-9]+_.*"
 
 # The commit message file path is provided as the first argument to the script
 commit_msg_file="$1"
