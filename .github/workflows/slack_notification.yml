@@ -8,7 +8,6 @@ on:
 jobs:
   slack_notification:
     runs-on: ubuntu-latest
-    needs: assign-reviewer
     steps:
       - name: Send Slack notification
         env:
