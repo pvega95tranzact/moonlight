@@ -1,0 +1,20 @@
+#!/bin/sh
+
+branch_types="feat|fix"
+commit_regex="^($branch_types)\(EAPP-[0-9]+\): .+|Merge branch 'develop' into (feature|fix)/EAPP-[0-9]+_.*"
+
+# The commit message file path is provided as the first argument to the script
+commit_msg_file="$1"
+
+# Read the commit message from the file
+commit_message=$(cat "$commit_msg_file")
+
+# Get the commit ID of the commit being amended
+commit_id=$(git rev-parse HEAD)
+
+# Check if the commit message matches the desired structure
+if ! echo "$commit_message" | grep -qE "$commit_regex"; then
+    echo "ERROR: Commit message does not match the required structure for commit $commit_id:"
+    echo "    $commit_message"
+    exit 1
+fi

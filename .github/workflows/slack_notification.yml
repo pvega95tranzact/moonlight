@@ -1,0 +1,25 @@
+name: slack notification
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  slack_notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Slack notification
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          PR_AUTHOR="${{ needs.assign-reviewer.outputs.pr_author }}"
+          PR_NUMBER="${{ needs.assign-reviewer.outputs.pr_number }}"
+          REPO_URL="https://github.com/${{ github.repository }}/pull/$PR_NUMBER"
+
+          curl -X POST -H 'Content-type: application/json' --data @- $SLACK_WEBHOOK_URL <<JSON
+          {
+            "text": ":rocket: Hey team, $PR_AUTHOR just whipped up a fresh PR and it's looking spicy! Check it out and show some love: $REPO_URL. Let's dive in and make some magic! :sparkles:",
+            "icon_emoji": ":rocket:"
+          }
+          JSON
